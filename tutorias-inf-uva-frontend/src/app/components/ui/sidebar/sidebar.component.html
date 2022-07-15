@@ -1,0 +1,21 @@
+<nav class="bg-light sidebar h-100">
+	<div class="sidebar-sticky">
+
+		<ul class="nav flex-column px-3 pt-2">
+			<div *ngFor="let sidebarItem of sidebarItems" class="mt-2 mb-2">
+				<label>
+					<i [class]="sidebarItem.icon" class="mx-1"></i>
+					{{ sidebarItem.label }}
+				</label>
+
+				<li class="nav-item" *ngFor="let item of sidebarItem.items">
+					<a class="nav-link" [routerLink]="item.routerLink">
+						<i [class]="item.icon" class=""></i>
+						{{ item.label }}
+					</a>
+				</li>
+			</div>
+		</ul>
+
+	</div>
+</nav>

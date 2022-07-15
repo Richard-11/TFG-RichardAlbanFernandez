@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+	<persistence-unit name="tutorias-inf-uva-api" transaction-type="RESOURCE_LOCAL">
+		<class>es.uva.inf.tutorias.persistence.entities.AlumnoDB</class>
+		<class>es.uva.inf.tutorias.persistence.entities.AsignaturaDB</class>
+		<class>es.uva.inf.tutorias.persistence.entities.CursoAcademicoDB</class>
+		<class>es.uva.inf.tutorias.persistence.entities.DiaDB</class>
+		<class>es.uva.inf.tutorias.persistence.entities.EstadoSolicitudDB</class>
+		<class>es.uva.inf.tutorias.persistence.entities.FranjaTutoriasDB</class>
+		<class>es.uva.inf.tutorias.persistence.entities.HorarioTutoriasDB</class>
+		<class>es.uva.inf.tutorias.persistence.entities.MencionTitulacionDB</class>
+		<class>es.uva.inf.tutorias.persistence.entities.NivelTitulacionDB</class>
+		<class>es.uva.inf.tutorias.persistence.entities.ProfesorDB</class>
+		<class>es.uva.inf.tutorias.persistence.entities.SolicitudTutoriaDB</class>
+		<class>es.uva.inf.tutorias.persistence.entities.TipoHorarioDB</class>
+		<class>es.uva.inf.tutorias.persistence.entities.TitulacionDB</class>
+		<class>es.uva.inf.tutorias.persistence.entities.TutoriaDB</class>
+		<class>es.uva.inf.tutorias.persistence.entities.UsuarioDB</class>
+		<class>es.uva.inf.tutorias.persistence.entities.AsignaturasMencionDB</class>
+		<class>es.uva.inf.tutorias.persistence.entities.AsignaturasMencionPK</class>
+		<properties>
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/tutorias"/>
+			<property name="javax.persistence.jdbc.user" value="postgres"/>
+			<property name="javax.persistence.jdbc.password" value="password"/>
+			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+		</properties>
+	</persistence-unit>
+</persistence>

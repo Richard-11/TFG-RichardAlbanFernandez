@@ -1,0 +1,50 @@
+<div class="container mb-3">
+	<form [formGroup]="profesorForm" (ngSubmit)="onSubmit(profesorForm.value)">
+		<div class="row">
+
+			<div class="col-md-6">
+				<label for="nombreProfesor" class="block mt-2">Nombre profesor: </label>
+				<input class="col-md-12" id="nombreProfesor" type="text" formControlName="nombre" pInputText>
+			</div>
+
+		</div>
+
+		<div class="clearfix">
+			<p-button label="Buscar" type="submit" class="float-end mt-2"></p-button>
+		</div>
+	</form>
+</div>
+
+<div class="container">
+
+	<p-table [value]="profesores" *ngIf="clicked" >
+		<ng-template pTemplate="header">
+			<tr>
+				<th>Nombre</th>
+				<th>Acciones</th>
+			</tr>
+		</ng-template>
+
+		<ng-template pTemplate="body" let-profesor>
+			<tr>
+				<td>{{ profesor.nombre }} {{profesor.apellidos}}</td>
+				<td class="text-center">
+					<span>
+						<p-button label="Solicitar tutoría" (onClick)="navigateToSolicitarTutoria(profesor.identificador)"></p-button>
+					</span>
+					<span class="mx-1">
+						<p-button label="Ver perfil" [routerLink]="['/informacion-profesor', profesor.identificador]"></p-button>
+					</span>
+				</td>
+			</tr>
+		</ng-template>
+
+		<ng-template pTemplate="emptymessage" let-columns>
+			<tr>
+				<td colspan="2">No se encontraron resultados</td>
+			</tr>
+		</ng-template>
+		
+	</p-table>
+
+</div>

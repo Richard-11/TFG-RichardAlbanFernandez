@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-primary">
+	<div class="d-flex justify-content-between w-100">
+		<div class="px-4">
+			<a class="navbar-brand" routerLink="/home">
+				<img class="logo" src="assets/images/logo.png" alt="Logo EII de la UVa">
+				Tutorías InfUVa
+			</a>
+		</div>
+
+		<div class="px-5">
+			<ul class="navbar-nav">
+				<li>
+					<a>{{ obtenerTipoUsuarioYNombreCompleto() }}</a>
+				</li>
+
+				<li class="dropdown">
+					<a href="" class="dropbtn">
+						<i class="pi pi-cog mx-1"></i>
+						Opciones
+					</a>
+					<div class="dropdown-content">
+						<a [routerLink]="['/perfil']">
+							<i class="pi pi-user mx-1"></i>
+							Ver perfil
+						</a>
+						<a (click)="cerrarSesion()">
+							<i class="pi pi-sign-out mx-1"></i>
+							Cerrar sesión
+						</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<p-confirmDialog [key]="cerrarSesionKey"></p-confirmDialog>

@@ -1,0 +1,13 @@
+<h2 class="mt-4">Inicio</h2>
+
+<div class="container">
+	<div class="row">
+		<app-tutorias-inicio title="Próximas tutorías" [tutorias]="proximasTutorias" [isProfesor]="isProfesor()">
+		</app-tutorias-inicio>
+	</div>
+
+	<div class="row">
+		<app-solicitudes-inicio [title]="solicitudesTitle" [solicitudes]="solicitudes" [isProfesor]="isProfesor()"
+			[responsiveOptions]="responsiveOptions"></app-solicitudes-inicio>
+	</div>
+</div>

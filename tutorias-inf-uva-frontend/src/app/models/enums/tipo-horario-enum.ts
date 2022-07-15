@@ -1,0 +1,5 @@
+export enum TipoHorarioEnum {
+	PRIMER_CUATRIMESTRE = 1,
+	SEGUNDO_CUATRIMESTRE = 2,
+	ANUAL = 3
+}

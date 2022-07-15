@@ -1,0 +1,24 @@
+<app-iniciar-sesion *ngIf="!isSesionActiva(); else usuarioLogeado"></app-iniciar-sesion>
+
+<ng-template #usuarioLogeado>
+	<div class="container-fluid w-100 h-100 p-0">
+
+		<app-header></app-header>
+		<div class="h-100">
+			<div class="row h-100">
+				<div class="col-md-2 h-100 bg-light">
+					<app-sidebar></app-sidebar>
+				</div>
+				<div class="col-md-8">
+					<main>
+						<p-messages></p-messages>
+						<router-outlet></router-outlet>
+					</main>
+				</div>
+				<div class="col-md-2 h-100 bg-light">
+					<app-right-sidebar></app-right-sidebar>
+				</div>
+			</div>
+		</div>
+	</div>
+</ng-template>

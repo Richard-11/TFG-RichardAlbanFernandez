@@ -1,0 +1,50 @@
+<p-carousel [value]="solicitudes" [numVisible]="3" [numScroll]="3" [responsiveOptions]="responsiveOptions">
+	<ng-template pTemplate="header">
+		<h4>{{ title }}</h4>
+	</ng-template>
+
+	<ng-template let-solicitud pTemplate="item">
+		<div class="item">
+			<div class="item-content d-flex align-items-center flex-column">
+				<div class="row">
+					<div *ngIf="isProfesor">
+						<label>Alumno: </label>
+						{{ solicitud.alumno.nombre }} {{ solicitud.alumno.apellidos}}
+					</div>
+
+					<div *ngIf="!isProfesor">
+						<label>Profesor destinatario: </label>
+						{{ solicitud.profesor.nombre }} {{ solicitud.profesor.apellidos}}
+					</div>
+				</div>
+
+				<div class="row">
+					<div>
+						<label>Asunto: </label>
+						{{ solicitud.asunto }}
+					</div>
+				</div>
+
+				<div class="row" *ngIf="solicitud.comentarioAlumno">
+					<div>
+						<label>Comentario:</label>
+						{{ solicitud.comentarioAlumno }}
+					</div>
+				</div>
+
+				<div class="row" *ngIf="solicitud.asignatura">
+					<div>
+						<label>Asignatura:</label>
+						{{ solicitud.asignatura.nombre }}
+					</div>
+				</div>
+
+				<div class="mt-auto">
+					<p-button type="button" [styleClass]="obtenerColorBoton()" icon="pi pi-eye"
+						pTooltip="Ver solicitud" tooltipPosition="bottom" (onClick)="verSolicitudTutoria(solicitud)">
+					</p-button>
+				</div>
+			</div>
+		</div>
+	</ng-template>
+</p-carousel>

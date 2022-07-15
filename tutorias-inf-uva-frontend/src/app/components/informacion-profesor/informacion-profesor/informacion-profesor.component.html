@@ -1,0 +1,28 @@
+<h2 class="mt-4">Información profesor</h2>
+<div class="container">
+	<div class="row" *ngIf="profesor">
+		<div class="col-md-6 my-auto">
+			<app-datos-usuario [usuario]="profesor"></app-datos-usuario>
+		</div>
+
+		<div class="col-md-6 my-auto">
+			<app-horarios-tutorias [horariosTutorias]="profesor.horariosTutorias!"></app-horarios-tutorias>
+		</div>
+	</div>
+
+	<div class="row">
+		<p-tabView *ngIf="profesor">
+			<p-tabPanel [header]="items[0].label!">
+				<ng-template pTemplate="content">
+					<app-asignaturas [usuario]="profesor"></app-asignaturas>
+				</ng-template>
+			</p-tabPanel>
+
+			<p-tabPanel [header]="items[1].label!">
+				<ng-template pTemplate="content">
+					<app-tutorias-programadas [profesor]="profesor"></app-tutorias-programadas>
+				</ng-template>
+			</p-tabPanel>
+		</p-tabView>
+	</div>
+</div>

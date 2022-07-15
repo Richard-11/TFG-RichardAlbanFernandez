@@ -1,0 +1,73 @@
+<form [formGroup]="filtrosForm" (ngSubmit)="onSubmit(filtrosForm.value)">
+
+	<div class="row">
+		<div class="col-md-4">
+			<div class="row">
+				<label>Estado solicitud</label>
+			</div>
+			<div class="row">
+				<p-dropdown formControlName="estado" [options]="estados" placeholder="Seleccionar" optionLabel="estado"
+					[showClear]="true">
+				</p-dropdown>
+			</div>
+		</div>
+
+		<div class="col-md-4">
+			<div class="row">
+				<label>Fecha tutoría</label>
+			</div>
+			<div class="row">
+				<p-calendar formControlName="fechaTutoria" dateFormat="dd/mm/yy" [firstDayOfWeek]="1" [showClear]="true"
+					[readonlyInput]="true" [disabledDays]="finesDeSemana">
+				</p-calendar>
+			</div>
+		</div>
+
+		<div class="col-md-4">
+			<div class="row">
+				<label>Grupal</label>
+			</div>
+			<div class="row d-flex">
+				<p-triStateCheckbox class="mt-2 mx-3" formControlName="grupal" [label]="obtenerLabelGrupal(filtrosForm.value)"></p-triStateCheckbox>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="row mt-2">
+		<div class="col-md-4" *ngIf="isAlumnoLogueado()">
+			<div class="row">
+				<label>Profesor</label>
+			</div>
+			<div class="row">
+				<p-autoComplete formControlName="profesor" placeholder="Introducir profesor" [showClear]="true"
+					[field]="$any(profesorConversionMethod)" [suggestions]="profesoresFiltrados" [forceSelection]="true"
+					(completeMethod)="filtrarProfesor($event)"
+					(onSelect)="buscarAsignaturas(filtrosForm.controls['profesor'].value)"
+					(onClear)="onClear()" (onBlur)="gestionarProfesorFormulario()">
+
+					<ng-template let-profesor pTemplate="item">
+						{{ profesor.nombre }} {{ profesor.apellidos }} ({{ profesor.identificador }})
+					</ng-template>
+
+				</p-autoComplete>
+			</div>
+		</div>
+
+		<div class="col-md-4">
+			<div class="row">
+				<label class="block">Asignatura</label>
+			</div>
+			<div class="row">
+				<p-dropdown formControlName="asignatura" [options]="asignaturas" placeholder="Seleccionar asignatura"
+					optionLabel="nombre" [showClear]="true">
+				</p-dropdown>
+			</div>
+		</div>
+	</div>
+
+	<div class="clearfix">
+		<p-button label="Buscar" type="submit" class="float-end mt-2"></p-button>
+	</div>
+
+</form>

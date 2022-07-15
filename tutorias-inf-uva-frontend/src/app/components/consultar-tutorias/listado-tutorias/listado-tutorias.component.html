@@ -1,0 +1,36 @@
+<p-table [value]="tutorias" [rows]="5" [paginator]="true">
+	<ng-template pTemplate="header">
+		<tr>
+			<th *ngIf="!isAlumnoLogueado()">Alumno</th>
+			<th *ngIf="isAlumnoLogueado()">Profesor</th>
+			<th>Asunto</th>
+			<th>Fecha tutoría</th>
+			<th>Hora inicio</th>
+			<th>Hora fin</th>
+			<th>Grupal</th>
+			<th>Acciones</th>
+		</tr>
+	</ng-template>
+
+	<ng-template pTemplate="body" let-tutoria let-i="rowIndex">
+		<tr>
+			<td>{{ isAlumnoLogueado() ? getNombreCompleto(tutoria.solicitudTutoria.profesor) : getNombreCompleto(tutoria.solicitudTutoria.alumno) }}</td>
+			<td>{{ tutoria.solicitudTutoria.asunto }}</td>
+			<td>{{ tutoria.solicitudTutoria.fechaTutoria | date: 'dd-MM-yyyy' }}</td>
+			<td>{{ tutoria.solicitudTutoria.horaInicio }}</td>
+			<td>{{ tutoria.solicitudTutoria.horaFin }}</td>
+			<td>{{ tutoria.solicitudTutoria.grupal ? 'Si' : 'No' }}</td>
+			<td class="text-center">
+				<span>
+					<p-button icon="pi pi-eye" pTooltip="Ver tutoria" tooltipPosition="bottom" [routerLink]="['/tutorias', tutoria.id]"></p-button>
+				</span>
+			</td>
+		</tr>
+	</ng-template>
+
+	<ng-template pTemplate="emptymessage" let-columns>
+		<tr>
+			<td colspan="7">No se encontraron resultados</td>
+		</tr>
+	</ng-template>
+</p-table>

@@ -1,0 +1,20 @@
+package es.uva.inf.tutorias.telegram.configuration;
+
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+@ConfigurationProperties(prefix = "es.uva.inf.tutorias.rest")
+public class RestClientConfiguration {
+
+	private String url;
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	
+}

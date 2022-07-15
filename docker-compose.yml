@@ -1,0 +1,70 @@
+version: '3'
+
+services:
+  db:
+    image: 'postgres:13.1-alpine'
+    container_name: ${POSTGRES_DB_CONTAINER_NAME}
+    profiles: ["prod", "local"]
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+    ports:
+      - "5432:5432"
+    volumes:
+      - /shared_folder/postgresql:/var/lib/postgresql
+      - ${SCRIPTS_SQL_FOLDER}:/docker-entrypoint-initdb.d
+
+  api:
+    image: 'tutorias-inf-uva-api'
+    build:
+      context: ./tutorias-inf-uva-api
+    container_name: ${TUTORIAS_API_CONTAINER_NAME}
+    profiles: ["prod", "local"]
+    depends_on:
+      - db
+    environment:
+      - SERVER_PORT=${TUTORIAS_API_PORT}
+      - SPRING_DATASOURCE_URL=${SPRING_DATASOURCE_URL}
+      - SPRING_DATASOURCE_USERNAME=${SPRING_DATASOURCE_USERNAME}
+      - SPRING_DATASOURCE_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
+    ports:
+      - "8080:8080"
+
+  frontend:
+    image: 'tutorias-inf-uva-frontend'
+    build:
+      context: ./tutorias-inf-uva-frontend
+    container_name: ${FRONTEND_CONTAINER_NAME}
+    profiles: ["prod"]
+    environment:
+      - TUTORIAS_API=${TUTORIAS_API}
+    ports:
+      - "4200:80"
+
+  frontend-local:
+    image: 'tutorias-inf-uva-frontend'
+    profiles: ["local"]
+    build:
+      context: ./tutorias-inf-uva-frontend
+      dockerfile: Dockerfile.local
+    container_name: ${FRONTEND_CONTAINER_NAME}
+    environment:
+      - TUTORIAS_API=${TUTORIAS_API}
+    ports:
+      - "4200:80"
+
+  bot:
+    image: 'tutorias-inf-uva-telegram-bot'
+    build:
+      context: ./tutorias-inf-uva-telegram-bot
+    container_name: ${BOT_CONTAINER_NAME}
+    profiles: ["prod", "local"]
+    environment:
+      - TUTORIAS_API_CONTAINER_NAME=${TUTORIAS_API_CONTAINER_NAME}
+      - TUTORIAS_API_PORT=${TUTORIAS_API_PORT}
+      - TUTORIAS_WEB_URL=${TUTORIAS_WEB_URL}
+      - TELEGRAM_BOT_USERNAME=${TELEGRAM_BOT_USERNAME}
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+    ports:
+      - "8081:8081"

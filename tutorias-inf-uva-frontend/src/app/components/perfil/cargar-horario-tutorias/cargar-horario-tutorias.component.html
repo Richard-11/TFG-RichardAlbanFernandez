@@ -1,0 +1,11 @@
+<div class="container">
+	<p>Seleccione un fichero en formato csv: </p>
+	<p-fileUpload name="myfile[]" [customUpload]="true" (uploadHandler)="onUpload($event)" accept=".csv" [fileLimit]="1"
+		[maxFileSize]="maxFileSize" [showCancelButton]="false">
+		<ng-template pTemplate="content">
+			<div *ngIf="uploadFile">
+				<li>{{uploadFile.name}} - {{uploadFile.size}} bytes</li>
+			</div>
+		</ng-template>
+	</p-fileUpload>
+</div>

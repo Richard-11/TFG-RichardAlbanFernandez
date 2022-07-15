@@ -1,0 +1,9 @@
+<h2 class="mt-4">Consultar solicitudes</h2>
+
+<div class="container">
+	<app-filtros-solicitud-tutoria (onSearch)="buscarSolicitudesTutoria($event)"></app-filtros-solicitud-tutoria>
+</div>
+
+<div class="container mt-3">
+	<app-listado-solicitudes-tutoria *ngIf="buscarClicked" [solicitudes]="solicitudes"></app-listado-solicitudes-tutoria>
+</div>

@@ -1,0 +1,15 @@
+label {
+	font-weight: bold;
+}
+
+.item {
+	height: 100%;
+	.item-content {
+		height: 98%;
+		border: 1px solid var(--surface-d);
+		border-radius: 3px;
+		margin: 0.3rem;
+		text-align: center;
+		padding: 1rem 0.2rem;
+	}
+}

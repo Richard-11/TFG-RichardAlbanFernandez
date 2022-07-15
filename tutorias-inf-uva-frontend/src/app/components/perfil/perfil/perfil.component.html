@@ -1,0 +1,17 @@
+<h2 class="mt-4">Perfil</h2>
+
+<div class="container row">
+	<div class="col-md-6 my-auto">
+		<app-datos-usuario [usuario]="usuario" [showNif]="true"></app-datos-usuario>
+	</div>
+
+	<div class="col-md-6 my-auto" *ngIf="isProfesor()">
+		<app-horarios-tutorias [horariosTutorias]="horariosTutorias" [showCargarHorarioButton]="true"></app-horarios-tutorias>
+	</div>
+
+	<div class="row mt-3">
+		<p-card header="Asignaturas">
+			<app-asignaturas [usuario]="usuario"></app-asignaturas>
+		</p-card>
+	</div>
+</div>

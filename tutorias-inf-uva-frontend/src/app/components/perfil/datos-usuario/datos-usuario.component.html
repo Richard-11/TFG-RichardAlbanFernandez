@@ -1,0 +1,19 @@
+<p-card header="Detalles">
+	<div>
+		<strong>Nombre: </strong>{{ usuario.nombre }} {{ usuario.apellidos }}
+	</div>
+	<div>
+		<strong>Email: </strong>{{ usuario.email }}
+	</div>
+	<div *ngIf="showNif">
+		<strong>NIF: </strong>{{ usuario.nif }}
+	</div>
+	
+	<ng-container *ngIf="isProfesor()">
+		<app-datos-profesor [profesor]="profesor"></app-datos-profesor>
+	</ng-container>
+
+	<ng-container *ngIf="isAlumno()">
+		<app-datos-alumno [alumno]="alumno"></app-datos-alumno>
+	</ng-container>
+</p-card>

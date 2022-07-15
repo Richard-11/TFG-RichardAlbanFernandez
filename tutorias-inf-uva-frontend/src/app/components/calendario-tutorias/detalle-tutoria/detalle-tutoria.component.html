@@ -1,0 +1,43 @@
+<div class="container">
+	<div class="row">
+		<div>
+			<label>Alumno: </label>
+			{{ solicitudTutoria.alumno?.nombre }} {{ solicitudTutoria.alumno?.apellidos}}
+		</div>
+	</div>
+
+	<div class="row mt-2" *ngIf="isTutoriaDeUsuario()">
+		<div>
+			<label>Asunto: </label>
+			{{ solicitudTutoria.asunto }}
+		</div>
+	</div>
+
+	<div class="row mt-2" *ngIf="isTutoriaDeUsuario()">
+		<div>
+			<label>Ubicacion tutoría: </label>
+			{{ solicitudTutoria.ubicacionTutoria }}
+		</div>
+	</div>
+
+	<div class="row mt-2">
+		<div class="col-md-4">
+			<label>Fecha tutoria:</label>
+			{{ solicitudTutoria.fechaTutoria | date: 'dd-MM-yyyy'}}
+		</div>
+
+		<div class="col-md-4">
+			<label>Hora inicio:</label>
+			{{ solicitudTutoria.horaInicio }}
+		</div>
+
+		<div class="col-md-4">
+			<label>Hora fin:</label>
+			{{ solicitudTutoria.horaFin }}
+		</div>
+	</div>
+
+	<div class="clearfix mt-4">
+		<p-button *ngIf="isTutoriaDeUsuario()" label="Ver más" type="button" class="float-end" (onClick)="verTutoria()"></p-button>
+	</div>
+</div>

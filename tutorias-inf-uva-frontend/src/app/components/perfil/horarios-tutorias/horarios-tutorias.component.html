@@ -1,0 +1,76 @@
+<div class="clearfix" *ngIf="showCargarHorarioButton">
+	<button pButton pRipple type="button" label="Cargar nuevo horario" icon="pi pi-upload" class="p-button-help float-end"
+		(click)="showCargarHorarioDialog()"></button>
+</div>
+<p-tabView *ngIf="horariosTutorias?.length">
+		<p-tabPanel *ngFor="let horario of horariosTutorias" [header]="horario.tipoHorario?.tipo!">
+			<p-table [value]="horario.franjasTutorias!" [paginator]="true" [rows]="5">
+				<ng-template pTemplate="caption">
+					<div class="table-header">
+						Horarios de tutorías
+					</div>
+				</ng-template>
+				<ng-template pTemplate="header">
+					<tr>
+						<th>
+							<div class="flex justify-content-between align-items-center">
+								Día
+							</div>
+						</th>
+						<th>
+							<div class="flex justify-content-between align-items-center">
+								Hora inicio
+							</div>
+						</th>
+						<th>
+							<div class="flex justify-content-between align-items-center">
+								Hora fin
+							</div>
+						</th>
+						<th>
+							<div class="flex justify-content-between align-items-center">
+								Centro
+							</div>
+						</th>
+						<th>
+							<div class="flex justify-content-between align-items-center">
+								Despacho
+							</div>
+						</th>
+					</tr>
+				</ng-template>
+
+				<ng-template pTemplate="body" let-franjaTutorias>
+					<tr>
+						<td>
+							<span class="p-column-title">Día</span>
+							{{ franjaTutorias.dia | titlecase }}
+						</td>
+						<td>
+							<span class="p-column-title">Hora inicio</span>
+							{{ franjaTutorias.horaInicio | slice: 0:5 }}
+						</td>
+						<td>
+							<span class="p-column-title">Hora fin</span>
+							{{ franjaTutorias.horaFin | slice: 0:5 }}
+						</td>
+						<td>
+							<span class="p-column-title">Centro</span>
+							{{ franjaTutorias.centro }}
+						</td>
+						<td>
+							<span class="p-column-title">Despacho</span>
+							{{ franjaTutorias.despacho }}
+						</td>
+					</tr>
+				</ng-template>
+
+				<ng-template pTemplate="emptymessage">
+					<tr>
+						<td colspan="5">No se encontraron resultados</td>
+					</tr>
+				</ng-template>
+			</p-table>
+
+		</p-tabPanel>
+</p-tabView>

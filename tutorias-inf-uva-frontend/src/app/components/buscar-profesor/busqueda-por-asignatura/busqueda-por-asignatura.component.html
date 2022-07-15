@@ -1,0 +1,100 @@
+<div class="container mb-3">
+	<form [formGroup]="asignaturaForm" (ngSubmit)="onSubmit(asignaturaForm.value)">
+		<div class="row">
+			<div class="col-md-6">
+				<div class="row">
+					<label class="block mt-2">Titulación: * </label>
+				</div>
+				<div class="row">
+					<p-dropdown [options]="titulaciones" formControlName="titulacion" placeholder="Selecionar titulación"
+						optionLabel="nombre" [showClear]="true" (onChange)="gestionarFormulario(asignaturaForm.value)"></p-dropdown>
+				</div>
+			</div>
+
+			<div class="col-md-6">
+				<div class="row">
+					<label class="block mt-2">Curso académico: </label>
+				</div>
+				<div class="row">
+					<p-dropdown [options]="cursos" formControlName="curso" placeholder="Selecionar curso" optionLabel="curso"
+						[showClear]="true" (onChange)="gestionarFormulario(asignaturaForm.value)"></p-dropdown>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-6">
+				<div class="row">
+					<label class="block mt-2">Mención: </label>
+				</div>
+				<div class="row">
+					<p-dropdown [options]="menciones" formControlName="mencion" placeholder="Selecionar mención"
+						optionLabel="nombre" [showClear]="true"></p-dropdown>
+				</div>
+			</div>
+
+			<div class="col-md-6">
+				<div class="row">
+					<label class="block mt-2">Nombre asignatura: </label>
+				</div>
+				<div class="row">
+					<input class="col-md-12" id="nombreProfesor" type="text" formControlName="nombre" pInputText>
+				</div>
+			</div>
+		</div>
+
+		<div class="clearfix">
+			<p-button label="Buscar" type="submit" class="float-end mt-2" [disabled]="!asignaturaForm.valid"></p-button>
+		</div>
+	</form>
+</div>
+
+<div class="container">
+	<p-accordion (onOpen)="onTabOpen($event)" *ngIf="asignaturas.length > 0; else emptymessage">
+		<ng-container *ngFor="let asignatura of asignaturas">
+			<p-accordionTab [header]="asignatura.nombre!" [cache]="true" >
+
+				<p-table [value]="asignatura.usuarios!">
+					<ng-template pTemplate="header">
+						<tr>
+							<th>Nombre</th>
+							<th>Acciones</th>
+						</tr>
+					</ng-template>
+
+					<ng-template pTemplate="body" let-profesor>
+
+						<tr>
+							<td>{{ profesor.nombre }} {{profesor.apellidos}}</td>
+							<td class="text-center">
+								<span>
+									<p-button label="Solicitar tutoría" (onClick)="navigateToSolicitarTutoria(profesor.identificador)"></p-button>
+								</span>
+								<span class="mx-1">
+									<p-button label="Ver perfil" [routerLink]="['/informacion-profesor', profesor.identificador]">
+									</p-button>
+								</span>
+							</td>
+						</tr>
+
+					</ng-template>
+
+					<ng-template pTemplate="emptymessage">
+						<tr>
+							<td colspan="2">Asignatura sin docencia</td>
+						</tr>
+					</ng-template>
+				</p-table>
+
+
+			</p-accordionTab>
+		</ng-container>
+	</p-accordion>
+
+	<ng-template #emptymessage>
+		<div *ngIf="clicked">
+			No se encontraron resultados
+		</div>
+	</ng-template>
+	
+</div>
