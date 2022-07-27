@@ -2,7 +2,7 @@
 Repositorio a modo de backup para mi TFG del Grado en Ingeniería Informática de la UVa
 
 ## Despliegue local
-Para desplegar la aplicación de manera local se debe tener instalado Docker. Además, para el uso del bot tendrás que crear un bot de Telegram y establecer tu propio token en el fichero .env, o utilizar el bot desplegado, para lo que únicamente tendrás que acceder al enlace de acceso al bot de más abajo.
+Para desplegar la aplicación de manera local se debe tener instalado Docker. Además, para el uso del bot tendrás que crear un bot de Telegram y establecer tu propio token en el fichero .env, o utilizar el bot desplegado, para lo que únicamente tendrás que acceder al enlace de acceso al bot de más abajo y dejar comentado en el fichero docker-compse.yml el servicio bot.
 
 Una vez se tenga el software necesario, lo primero es clonar el repositorio, para ello, se debe ejecutar la siguiente instrucción desde una terminal de línea de comandos:
 
